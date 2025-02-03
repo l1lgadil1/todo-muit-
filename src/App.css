@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Colors */
+  /* Light Theme Colors */
   --background-color: #ffffff;
   --background-secondary-color: #f8fafc;
   --text-color: #0f172a;
@@ -32,12 +32,139 @@
   --spacing-xl: 2rem;
 }
 
+/* Dark Theme Colors */
 [data-theme='dark'] {
-  --background-color: #0f172a;
-  --background-secondary-color: #1e293b;
-  --text-color: #f8fafc;
-  --text-secondary-color: #cbd5e1;
-  --border-color: #334155;
+  --background-color: #1A1D2D;
+  --background-secondary-color: #151823;
+  --text-color: #E2E8F0;
+  --text-secondary-color: #94A3B8;
+  --border-color: #2A2E3F;
+  
+  --primary-color: #818CF8;
+  --primary-color-light: #A5B4FC;
+  --primary-color-dark: #6366F1;
+  
+  --success-color: #34D399;
+  --success-color-light: #6EE7B7;
+  --success-color-dark: #10B981;
+  
+  --warning-color: #FBBF24;
+  --warning-color-light: #FCD34D;
+  --warning-color-dark: #F59E0B;
+  
+  --error-color: #F87171;
+  --error-color-light: #FCA5A5;
+  --error-color-dark: #EF4444;
+}
+
+/* Dark theme specific overrides */
+[data-theme='dark'] .app {
+  background: linear-gradient(135deg, #151823 0%, #1A1D2D 100%);
+}
+
+[data-theme='dark'] .header {
+  background-color: rgba(26, 29, 45, 0.8);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #2A2E3F;
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+}
+
+[data-theme='dark'] .header h1 {
+  background: linear-gradient(135deg, #A5B4FC 0%, #818CF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme='dark'] .section {
+  background-color: #1E2132;
+  border: 1px solid #2A2E3F;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='dark'] .tab {
+  color: #94A3B8;
+}
+
+[data-theme='dark'] .tab:hover {
+  background-color: #252A41;
+  color: #E2E8F0;
+}
+
+[data-theme='dark'] .tab.active {
+  background: linear-gradient(135deg, #818CF8 0%, #6366F1 100%);
+  color: #E2E8F0;
+}
+
+[data-theme='dark'] .search-input,
+[data-theme='dark'] .filter-select {
+  background-color: #1E2132;
+  border-color: #2A2E3F;
+  color: #E2E8F0;
+}
+
+[data-theme='dark'] .search-input::-webkit-input-placeholder, [data-theme='dark'] .filter-select::-webkit-input-placeholder {
+  color: #64748B;
+}
+
+[data-theme='dark'] .search-input::-moz-placeholder, [data-theme='dark'] .filter-select::-moz-placeholder {
+  color: #64748B;
+}
+
+[data-theme='dark'] .search-input:-ms-input-placeholder, [data-theme='dark'] .filter-select:-ms-input-placeholder {
+  color: #64748B;
+}
+
+[data-theme='dark'] .search-input::-ms-input-placeholder, [data-theme='dark'] .filter-select::-ms-input-placeholder {
+  color: #64748B;
+}
+
+[data-theme='dark'] .search-input::placeholder,
+[data-theme='dark'] .filter-select::placeholder {
+  color: #64748B;
+}
+
+[data-theme='dark'] .search-input:hover,
+[data-theme='dark'] .filter-select:hover {
+  border-color: #3A3F57;
+  background-color: #252A41;
+}
+
+[data-theme='dark'] .search-input:focus,
+[data-theme='dark'] .filter-select:focus {
+  border-color: #818CF8;
+  background-color: #252A41;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+}
+
+[data-theme='dark'] .add-task-button {
+  background: linear-gradient(135deg, #818CF8 0%, #6366F1 100%);
+  color: #E2E8F0;
+}
+
+[data-theme='dark'] .add-task-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(129, 140, 248, 0.3);
+}
+
+[data-theme='dark'] .no-tasks {
+  background-color: #1E2132;
+  color: #94A3B8;
+}
+
+/* Dark mode system preference */
+@media (prefers-color-scheme: dark) {
+  [data-theme='system'] {
+    --background-color: #1A1D2D;
+    --background-secondary-color: #151823;
+    --text-color: #E2E8F0;
+    --text-secondary-color: #94A3B8;
+    --border-color: #2A2E3F;
+    
+    --primary-color: #818CF8;
+    --primary-color-light: #A5B4FC;
+    --primary-color-dark: #6366F1;
+  }
 }
 
 * {
@@ -56,6 +183,7 @@ body {
   color: var(--text-color);
   line-height: 1.5;
   min-height: 100vh;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .app {

@@ -4,7 +4,6 @@ import { TaskList } from './task-list';
 import { TaskFilters } from './task-filters';
 import { Modal } from '../../../shared/ui/modal/modal';
 import { TaskForm } from './task-form';
-import styles from './task-section.module.css';
 
 interface TaskFiltersState {
   status?: Task['status'];

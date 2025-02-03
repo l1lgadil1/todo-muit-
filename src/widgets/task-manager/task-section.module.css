@@ -1,0 +1,250 @@
+.task-section {
+  padding: var(--spacing-lg);
+  background: var(--background-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.add-button {
+  padding: 8px 16px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.add-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filters {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.select,
+.search {
+  padding: 8px 12px;
+  border: 1px solid var(--background-secondary);
+  border-radius: var(--border-radius-md);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: var(--background-primary);
+  transition: all 0.2s ease;
+}
+
+.select {
+  min-width: 120px;
+}
+
+.search {
+  flex: 1;
+}
+
+.select:focus,
+.search:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.no-tasks {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: var(--spacing-xl);
+}
+
+.task-list {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.task-item {
+  padding: var(--spacing-md);
+  background: var(--background-secondary);
+  border-radius: var(--border-radius-md);
+  transition: all 0.2s ease;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.task-content h3 {
+  margin: 0 0 var(--spacing-xs);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.task-content p {
+  margin: 0 0 var(--spacing-md);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.priority {
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--primary-color);
+  color: white;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.8rem;
+  border: 1px solid var(--background-secondary);
+}
+
+.delete {
+  margin-left: auto;
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.8rem;
+  color: var(--danger-color);
+  transition: all 0.2s ease;
+}
+
+.delete:hover {
+  background: var(--danger-color);
+  color: white;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--background-primary);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h3 {
+  margin: 0 0 var(--spacing-lg);
+  font-size: 1.3rem;
+  color: var(--text-primary);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--background-secondary);
+  border-radius: var(--border-radius-md);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: var(--background-primary);
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.form-actions button {
+  flex: 1;
+  padding: 8px 16px;
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.form-actions button[type="submit"] {
+  background: var(--primary-color);
+  color: white;
+}
+
+.form-actions button[type="button"] {
+  background: var(--background-secondary);
+  color: var(--text-secondary);
+}
+
+.form-actions button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .task-item {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .task-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .select,
+  .search,
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .select:focus,
+  .search:focus,
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+} 

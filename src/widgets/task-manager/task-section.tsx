@@ -27,8 +27,10 @@ export function TaskSection({
   const [showForm, setShowForm] = React.useState(false);
 
   const filteredTasks = tasks.filter((task) => {
-    const matchesStatus = filters.status === 'all' || task.status === filters.status;
-    const matchesSearch = task.title.toLowerCase().includes(filters.search.toLowerCase());
+    const matchesStatus = !filters.status || filters.status === 'all' || task.status === filters.status;
+    const matchesSearch = !filters.search || 
+      task.title?.toLowerCase().includes(filters.search.toLowerCase()) ||
+      task.description?.toLowerCase().includes(filters.search.toLowerCase());
     return matchesStatus && matchesSearch;
   });
 

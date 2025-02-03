@@ -3,7 +3,9 @@ import { TaskSection } from './widgets/task-manager/task-section'
 import { useTaskManager } from './features/task/model/use-task-manager'
 import { useTabNavigation } from './features/navigation/model/use-tab-navigation'
 import { LanguageProvider, useTranslation } from './shared/i18n/language-context'
+import { ThemeProvider } from './shared/theme/theme-context'
 import { LanguageSwitcher } from './features/language/ui/language-switcher'
+import { ThemeSwitcher } from './features/theme/ui/theme-switcher'
 import './App.css'
 import { PomodoroTimer } from './features/pomodoro/ui/pomodoro-timer'
 
@@ -22,6 +24,7 @@ function AppContent() {
 
   return (
     <div className="app">
+      <ThemeSwitcher />
       <LanguageSwitcher />
       <header className="header">
         <h1>{t('app.title')}</h1>
@@ -54,9 +57,11 @@ function AppContent() {
 
 function App() {
   return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </ThemeProvider>
   )
 }
 
