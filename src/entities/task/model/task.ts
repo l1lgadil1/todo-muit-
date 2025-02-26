@@ -34,13 +34,13 @@ export const isTaskInProgress = (task: Task): boolean => {
 export const filterTasks = (
   tasks: Task[],
   filters: {
-    status?: Task['status'];
+    status?: Task['status'] | 'all';
     search?: string;
     priority?: Task['priority'];
   }
 ): Task[] => {
   return tasks.filter((task) => {
-    const matchesStatus = !filters.status || task.status === filters.status;
+    const matchesStatus = !filters.status || filters.status === 'all' || task.status === filters.status;
     const matchesSearch = !filters.search || 
       task.title.toLowerCase().includes(filters.search.toLowerCase()) ||
       task.description?.toLowerCase().includes(filters.search.toLowerCase());

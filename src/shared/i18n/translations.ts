@@ -53,6 +53,7 @@ export const translations = {
         titlePlaceholder: 'Enter task title',
         description: 'Description',
         descriptionPlaceholder: 'Enter task description',
+        estimatedPomodoros: 'Estimated Pomodoros',
         priority: {
           label: 'Priority',
           low: 'Low Priority',
@@ -193,6 +194,7 @@ export const translations = {
         titlePlaceholder: 'Введите название задачи',
         description: 'Описание',
         descriptionPlaceholder: 'Введите описание задачи',
+        estimatedPomodoros: 'Оценка помидоров',
         priority: {
           label: 'Приоритет',
           low: 'Низкий приоритет',
@@ -241,6 +243,12 @@ export const translations = {
       },
     },
     pomodoro: {
+      workDurationLabel: 'Длительность работы',
+      restDurationLabel: 'Длительность отдыха', 
+      totalCyclesLabel: 'Всего циклов',
+      longRestDurationLabel: 'Длительность длинного перерыва',
+      cyclesBeforeLongRestLabel: 'Циклов до длинного перерыва',
+      minutesLabel: 'минут',
       title: 'Таймер Помодоро',
       workTime: 'Время работы',
       breakTime: 'Время отдыха',

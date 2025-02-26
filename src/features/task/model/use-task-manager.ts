@@ -5,18 +5,19 @@ import {
   fetchTasks, 
   createTaskApi, 
   updateTaskStatusApi, 
-  deleteTaskApi 
+  deleteTaskApi,
+  updateTaskApi
 } from '../../../shared/api/task-api';
 
 export interface TaskFilters {
-  status?: Task['status'];
+  status?: Task['status'] | 'all';
   search?: string;
   priority?: Task['priority'];
 }
 
 export const useTaskManager = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [filters, setFilters] = useState<TaskFilters>({});
+  const [filters, setFilters] = useState<TaskFilters>({ status: 'all' });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -69,6 +70,37 @@ export const useTaskManager = () => {
     }
   };
 
+  const handleUpdateTask = async (taskId: string, taskData: Partial<Task>) => {
+    try {
+      setError(null);
+      
+      // Find the current task to merge with updates
+      const currentTask = tasks.find(task => task.id === taskId);
+      if (!currentTask) {
+        throw new Error(`Task with id ${taskId} not found`);
+      }
+      
+      // Merge current task with updates
+      const updatedTaskData = { ...currentTask, ...taskData };
+      
+      // Call API to update task
+      const updatedTask = await updateTaskApi(taskId, updatedTaskData);
+      
+      // Update local state
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => {
+          if (task.id === taskId) {
+            return updatedTask;
+          }
+          return task;
+        })
+      );
+    } catch (err) {
+      console.error('Failed to update task:', err);
+      setError('Failed to update task. Please try again later.');
+    }
+  };
+
   const handleDeleteTask = async (taskId: string) => {
     try {
       setError(null);
@@ -89,6 +121,7 @@ export const useTaskManager = () => {
     setFilters,
     handleCreateTask,
     handleStatusChange,
+    handleUpdateTask,
     handleDeleteTask,
     isLoading,
     error,

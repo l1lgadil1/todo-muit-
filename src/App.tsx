@@ -19,6 +19,7 @@ function AppContent() {
     handleCreateTask,
     handleStatusChange,
     handleDeleteTask,
+    handleUpdateTask,
   } = useTaskManager()
 
   const { activeTab, setActiveTab } = useTabNavigation()
@@ -48,6 +49,7 @@ function AppContent() {
             onStatusChange={handleStatusChange}
             onDelete={handleDeleteTask}
             onCreateTask={handleCreateTask}
+            onUpdateTask={handleUpdateTask}
           />
         ) : (
           <section className="section pomodoro-section">
