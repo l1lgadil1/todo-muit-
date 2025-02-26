@@ -8,6 +8,8 @@ import { LanguageSwitcher } from './features/language/ui/language-switcher'
 import { ThemeSwitcher } from './features/theme/ui/theme-switcher'
 import './App.css'
 import { PomodoroTimer } from './features/pomodoro/ui/pomodoro-timer'
+import { useState } from 'react'
+import { TaskStatus } from './shared/types/task'
 
 function AppContent() {
   const {
@@ -21,13 +23,18 @@ function AppContent() {
 
   const { activeTab, setActiveTab } = useTabNavigation()
   const { t } = useTranslation()
+  const [selectedTaskId, setSelectedTaskId] = useState<string | undefined>(undefined)
 
   return (
     <div className="app">
-      <ThemeSwitcher />
-      <LanguageSwitcher />
       <header className="header">
-        <h1>{t('app.title')}</h1>
+        <div className="header-content">
+          <h1 className="app-title">{t('app.title')}</h1>
+          <div className="header-actions">
+            <ThemeSwitcher />
+            <LanguageSwitcher />
+          </div>
+        </div>
       </header>
 
       <main className="main">
@@ -36,8 +43,8 @@ function AppContent() {
         {activeTab === 'tasks' ? (
           <TaskSection
             tasks={tasks}
-            filters={filters}
-            onFilterChange={setFilters}
+            filters={filters as { status: string; search: string }}
+            onFilterChange={setFilters as (filters: { status: string; search: string }) => void}
             onStatusChange={handleStatusChange}
             onDelete={handleDeleteTask}
             onCreateTask={handleCreateTask}
@@ -47,6 +54,8 @@ function AppContent() {
             <PomodoroTimer
               tasks={tasks}
               onTaskStatusChange={handleStatusChange}
+              selectedTaskId={selectedTaskId}
+              onSelectTask={(taskId: string) => setSelectedTaskId(taskId)}
             />
           </section>
         )}

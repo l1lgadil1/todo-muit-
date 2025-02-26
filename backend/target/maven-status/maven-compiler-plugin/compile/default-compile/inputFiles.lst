@@ -1,0 +1,16 @@
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/repository/TaskRepository.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/service/TaskService.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/TodoApplication.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/model/TaskStatus.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/controller/PomodoroController.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/service/impl/TaskServiceImpl.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/service/impl/PomodoroServiceImpl.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/config/OpenApiConfig.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/model/PomodoroType.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/model/PomodoroSession.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/repository/PomodoroSessionRepository.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/service/PomodoroService.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/dto/TaskDTO.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/dto/PomodoroSessionDTO.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/controller/TaskController.java
+/Users/ilyasagadilov/Desktop/projects/iitu/todo-list/backend/src/main/java/com/todoapp/model/Task.java

@@ -12,7 +12,7 @@ interface TaskSectionProps {
   onFilterChange: (filters: { status: string; search: string }) => void;
   onStatusChange: (taskId: string, status: Task['status']) => void;
   onDelete: (taskId: string) => void;
-  onCreateTask: (task: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>) => void;
+  onCreateTask: (task: Omit<Task, 'id' | 'createdAt' | 'updatedAt' | 'completedPomodoros'>) => void;
 }
 
 export function TaskSection({
@@ -113,11 +113,12 @@ export function TaskSection({
                 onCreateTask({
                   title: formData.get('title') as string,
                   description: formData.get('description') as string,
-                  priority: formData.get('priority') as Task['priority'],
+                  priority: (formData.get('priority') as Task['priority']) || 'medium',
                   status: 'todo',
                   tags: formData.get('tags') as string
                     ? (formData.get('tags') as string).split(',').map((tag) => tag.trim())
                     : [],
+                  estimatedPomodoros: Number(formData.get('estimatedPomodoros')) || 1,
                 });
                 setShowForm(false);
               }}
@@ -133,14 +134,18 @@ export function TaskSection({
               <div className={styles['form-group']}>
                 <label>{t('tasks.form.priority.label')}</label>
                 <select name="priority" required>
-                  <option value="LOW">{t('tasks.form.priority.low')}</option>
-                  <option value="MEDIUM">{t('tasks.form.priority.medium')}</option>
-                  <option value="HIGH">{t('tasks.form.priority.high')}</option>
+                  <option value="low">{t('tasks.form.priority.low')}</option>
+                  <option value="medium" selected>{t('tasks.form.priority.medium')}</option>
+                  <option value="high">{t('tasks.form.priority.high')}</option>
                 </select>
               </div>
               <div className={styles['form-group']}>
                 <label>{t('tasks.form.tags')}</label>
-                <input type="text" name="tags" />
+                <input type="text" name="tags" placeholder={t('tasks.form.tagsPlaceholder')} />
+              </div>
+              <div className={styles['form-group']}>
+                <label>{t('tasks.form.estimatedPomodoros')}</label>
+                <input type="number" name="estimatedPomodoros" min="1" defaultValue="1" />
               </div>
               <div className={styles['form-actions']}>
                 <button type="submit">{t('tasks.form.submit')}</button>

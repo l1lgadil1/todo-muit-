@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { Task, TaskFormData } from '../../../shared/types/task';
 import { createTask, filterTasks, sortTasks } from '../../../entities/task/model/task';
 import { 
-  getStoredTasks, 
-  storeTask, 
-  updateStoredTask, 
-  deleteStoredTask 
-} from '../../../shared/lib/local-storage/task-storage';
+  fetchTasks, 
+  createTaskApi, 
+  updateTaskStatusApi, 
+  deleteTaskApi 
+} from '../../../shared/api/task-api';
 
 export interface TaskFilters {
   status?: Task['status'];
@@ -18,40 +18,66 @@ export const useTaskManager = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filters, setFilters] = useState<TaskFilters>({});
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Initial load from localStorage
+  // Initial load from API
   useEffect(() => {
-    const loadTasks = () => {
-      const storedTasks = getStoredTasks();
-      setTasks(storedTasks);
-      setIsLoading(false);
+    const loadTasks = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const apiTasks = await fetchTasks();
+        setTasks(apiTasks);
+      } catch (err) {
+        console.error('Failed to fetch tasks:', err);
+        setError('Failed to load tasks. Please try again later.');
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     loadTasks();
   }, []);
 
-  const handleCreateTask = (formData: TaskFormData) => {
-    const newTask = createTask(formData);
-    storeTask(newTask);
-    setTasks((prevTasks) => [...prevTasks, newTask]);
+  const handleCreateTask = async (formData: TaskFormData) => {
+    try {
+      setError(null);
+      const newTask = await createTaskApi(formData);
+      setTasks((prevTasks) => [...prevTasks, newTask]);
+    } catch (err) {
+      console.error('Failed to create task:', err);
+      setError('Failed to create task. Please try again later.');
+    }
   };
 
-  const handleStatusChange = (taskId: string, status: Task['status']) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => {
-        if (task.id === taskId) {
-          const updatedTask = { ...task, status, updatedAt: new Date().toISOString() };
-          updateStoredTask(updatedTask);
-          return updatedTask;
-        }
-        return task;
-      })
-    );
+  const handleStatusChange = async (taskId: string, status: Task['status']) => {
+    try {
+      setError(null);
+      const updatedTask = await updateTaskStatusApi(taskId, status);
+      
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => {
+          if (task.id === taskId) {
+            return updatedTask;
+          }
+          return task;
+        })
+      );
+    } catch (err) {
+      console.error('Failed to update task status:', err);
+      setError('Failed to update task status. Please try again later.');
+    }
   };
 
-  const handleDeleteTask = (taskId: string) => {
-    deleteStoredTask(taskId);
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  const handleDeleteTask = async (taskId: string) => {
+    try {
+      setError(null);
+      await deleteTaskApi(taskId);
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    } catch (err) {
+      console.error('Failed to delete task:', err);
+      setError('Failed to delete task. Please try again later.');
+    }
   };
 
   const filteredTasks = filterTasks(tasks, filters);
@@ -65,5 +91,6 @@ export const useTaskManager = () => {
     handleStatusChange,
     handleDeleteTask,
     isLoading,
+    error,
   };
 }; 

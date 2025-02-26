@@ -26,19 +26,6 @@ export const TaskItem: FC<TaskItemProps> = ({ task, onStatusChange, onDelete }) 
     }
   };
 
-  const getPriorityLabel = (priority: Task['priority']): string => {
-    switch (priority) {
-      case 'low':
-        return '🟢 Low';
-      case 'medium':
-        return '🟡 Medium';
-      case 'high':
-        return '🔴 High';
-      default:
-        return priority;
-    }
-  };
-
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat('en-US', {
@@ -65,9 +52,6 @@ export const TaskItem: FC<TaskItemProps> = ({ task, onStatusChange, onDelete }) 
           </p>
         )}
         <div className={styles['task-meta']}>
-          <span className={styles['task-priority']}>
-            {getPriorityLabel(task.priority)}
-          </span>
           {task.tags?.map((tag) => (
             <span key={tag} className={styles['task-tag']}>
               #{tag}

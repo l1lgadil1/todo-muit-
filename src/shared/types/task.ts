@@ -9,6 +9,8 @@ export interface Task {
   updatedAt: string;
   priority: 'low' | 'medium' | 'high';
   tags?: string[];
+  estimatedPomodoros?: number;
+  completedPomodoros?: number;
 }
 
 export interface TaskFormData {
@@ -16,4 +18,5 @@ export interface TaskFormData {
   description?: string;
   priority: Task['priority'];
   tags?: string[];
+  estimatedPomodoros?: number;
 } 
